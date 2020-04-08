@@ -46,16 +46,17 @@ def get_node_loc(node):
 
 def run():
     """Run the linter."""
-    n_lines = int(sys.argv[1])
+    max_loc = int(sys.argv[1])
     filename = sys.argv[2]
     root = parse_python_file(filename)
 
-    fun_nodes = find_all_function_nodes(root)
-    for node in fun_nodes:
-        if get_node_loc(node) > n_lines and not ast.get_docstring(node):
+    nodes = find_all_function_nodes(root)
+    for node in nodes:
+        loc = get_node_loc(node)
+        if loc > max_loc and not ast.get_docstring(node):
             print(
-                f"{filename}:{node.lineno}:{node.col_offset} A001 function "
-                f"with >{n_lines} LoC lacks docstring")
+                f"{filename}:{node.lineno}:{node.col_offset} L001 function "
+                f"with {loc} LoC lacks docstring")
 
 
 if __name__ == "__main__":
