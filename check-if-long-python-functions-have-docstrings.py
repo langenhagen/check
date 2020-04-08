@@ -44,12 +44,9 @@ def get_node_loc(node):
     return end_lineno - lineno
 
 
-def run():
+def run(max_loc, filename):
     """Run the linter."""
-    max_loc = int(sys.argv[1])
-    filename = sys.argv[2]
     root = parse_python_file(filename)
-
     nodes = find_all_function_nodes(root)
     for node in nodes:
         loc = get_node_loc(node)
@@ -60,4 +57,6 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    run(
+        max_loc=int(sys.argv[1]),
+        filename=sys.argv[2])
