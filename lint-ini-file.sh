@@ -1,9 +1,7 @@
 #!/bin/bash
-# Identify possible issues in a given ini file.
+# Identify possible issues in the given ini files.
 #
 # author: andreasl
-
-ini_file="$1"
 
 checks_array=(
     '[^ ]='  # space before assignment
@@ -12,4 +10,6 @@ checks_array=(
 )
 checks="$(printf '%s|' "${checks_array[@]}")"
 
-grep -EHn "${checks}" "$ini_file"
+for ini_file in "$@"; do
+    grep -EHn "${checks}" "$ini_file"
+done
