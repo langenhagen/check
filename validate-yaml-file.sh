@@ -1,6 +1,7 @@
 #!/bin/bash
 # Validate the given yaml file via python.
 # Requires Python and the Python package pyyaml to be available.
+#
 # Consider using the tool yamllint https://github.com/adrienverge/yamllint.
 #
 # based on:
@@ -8,8 +9,4 @@
 #
 # author: andreasl
 
-if python -c 'import yaml, sys; print(yaml.safe_load(sys.stdin))' < "$1" >/dev/null; then
-    printf "Yaml valid.\n"
-else
-    exit 1
-fi
+python -c 'import sys, yaml; yaml.safe_load(sys.stdin); print("Yaml valid")' < "$1"
