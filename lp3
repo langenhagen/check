@@ -5,5 +5,8 @@
 #
 # author: andreasl
 
+printf 'Flake8 '
+flake8 --version
 flake8 "$*"
+pylint --version | head -1
 pylint --msg-template='{msg_id} {path}:{line}: {msg}' "$*"
