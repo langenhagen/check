@@ -10,6 +10,3 @@ flake8 --version
 flake8 --max-line-length 88 "$*"
 pylint --version | head -1
 pylint --msg-template='{msg_id} {path}:{line}: {msg}' "$*"
-
-
-E501
