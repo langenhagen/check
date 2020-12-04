@@ -11,5 +11,5 @@ for file in "$@"; do
     flake8 --version
     flake8 --max-line-length 88 "$file"
     pylint --version | head -1
-    pylint --msg-template='{msg_id} {path}:{line}: {msg}' "$file"
+    pylint --msg-template='{msg_id} {path}:{line}: {msg}' --disable=W1203 "$file"
 done
