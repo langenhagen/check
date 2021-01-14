@@ -173,6 +173,7 @@ if [ "$light" == 'true' ]; then
         'C0116'
         'C0330'  # Wrong hanging indentation before block
         'E0401'
+        'R0201'  # Method could be a function
         'R0902'  # Too many instance attributes
         'R0903'
         'R0912'  # Too many branches
