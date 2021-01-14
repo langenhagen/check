@@ -191,15 +191,14 @@ fi
 for file in "${files[@]}"; do
     printf '\e[1m=== %s ===\e[m\n' "$file"
 
-    printf 'Flake8 '
-    flake8 --version
+    printf '*** flake8 %s ***\n' "$( flake8 --version | head -1 | cut -d' ' -f1)"
     # shellcheck disable=SC2086
     flake8 --max-line-length 88 ${flake8_selection} "$file"
 
-    pylint --version | head -1
+    printf '*** %s ***\n' "$(pylint --version | head -1)"
     # shellcheck disable=SC2086
-    pylint --msg-template='{msg_id} {path}:{line}: {msg}' ${pylint_ignores} "$file"
+    pylint --msg-template='{msg_id} {path}:{line}: {msg}' --score=no ${pylint_ignores} "$file"
 
-    mypy --version
-    mypy --ignore-missing-imports --follow-imports=skip --no-color-output "$file"
+    printf '*** %s ***\n' "$(mypy --version)"
+    mypy --ignore-missing-imports --follow-imports=skip --no-color-output --no-error-summary "$file"
 done
