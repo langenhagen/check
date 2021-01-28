@@ -22,7 +22,13 @@ while [ "$#" -gt 0 ]; do
     shift
 done
 
-if [ "$light" == 'true' ]; then
+if [ "$light" != 'true' ]; then
+    # normal mode error code specification
+
+    pylint_ignores="--disable=C0103"
+else
+    # light mode error code specifications
+
     light_flake8_error_codes_array=(
         # 'D100'  # flake8-docstrings Missing docstring in public module
         # 'D101'  # flake8-docstrings Missing docstring in public class
@@ -168,7 +174,7 @@ if [ "$light" == 'true' ]; then
     light_flake8_error_codes="$(printf '%s,' "${light_flake8_error_codes_array[@]}")"
 
     light_disabled_pylint_error_codes_array=(
-        'C0103'
+        'C0103'  # Module name doesn't conform to snake_case naming style
         'C0115'
         'C0116'
         'C0330'  # Wrong hanging indentation before block
