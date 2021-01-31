@@ -187,6 +187,7 @@ else
         'R0914'  # Too many local variables
         'R0915'  # Too many statements
         'W0511'
+        'W0621'  # Redefining name from outer scope
         'W1203'
     )
     light_disabled_pylint_error_codes="$(printf '%s,' "${light_disabled_pylint_error_codes_array[@]}")"
