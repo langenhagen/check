@@ -200,7 +200,7 @@ fi
 for file in "${files[@]}"; do
     printf '\e[1m=== %s ===\e[m\n' "$file"
 
-    printf '*** flake8 %s ***\n' "$( flake8 --version | head -1 | cut -d' ' -f1)"
+    printf '*** flake8 %s ***\n' "$(flake8 --version | head -1 | cut -d' ' -f1)"
     # shellcheck disable=SC2086
     flake8 --max-line-length 88 ${flake8_selection} "$file"
 
