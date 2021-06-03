@@ -211,6 +211,9 @@ for file in "${files[@]}"; do
     printf '*** %s ***\n' "$(mypy --version)"
     mypy --ignore-missing-imports --follow-imports=skip --no-color-output --no-error-summary "$file"
 
+    printf '*** black %s ***\n' "$(black --version | rev | cut -d' ' -f1 | rev)"
+    black --check --quiet "$file" || printf 'The black formatting is bad\n'
+
     printf '*** isort %s ***\n' "$(isort --version-number)"
     isort --check-only --diff "$file"
 done
