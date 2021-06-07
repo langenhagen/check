@@ -215,5 +215,5 @@ for file in "${files[@]}"; do
     black --check --quiet "$file" || printf 'The black formatting is bad\n'
 
     printf '*** isort %s ***\n' "$(isort --version-number)"
-    isort --check-only --diff "$file"
+    isort --profile black --check-only --diff "$file"
 done
