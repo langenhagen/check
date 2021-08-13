@@ -8,9 +8,11 @@
 #   lp3 [-l|--light] <FILE> [<FILE>] ...
 #
 # author: andreasl
+shopt -s globstar
 
 files=()
 light=false
+
 while [ "$#" -gt 0 ]; do
     case "$1" in
     -l|--light)
@@ -22,6 +24,8 @@ while [ "$#" -gt 0 ]; do
     esac
     shift
 done
+
+[[ ${#files[@]} -eq 0 ]] && mapfile -t files <<< "$(ls -1 -- **/*.py)"
 
 if [ "$light" != 'true' ]; then
     # normal mode error code specification
