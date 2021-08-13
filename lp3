@@ -179,6 +179,7 @@ else
     light_flake8_error_codes="$(printf '%s,' "${light_flake8_error_codes_array[@]}")"
 
     light_disabled_pylint_error_codes_array=(
+        'C0102'  # Black listed name "foo"
         'C0103'  # Module name doesn't conform to snake_case naming style
         'C0115'
         'C0116'
