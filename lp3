@@ -205,6 +205,7 @@ fi
 flake8_version="$(flake8 --version | head -1 | cut -d' ' -f1)"
 pylint_version="$(pylint --version | head -1  | cut -d' ' -f2)"
 mypy_version="$(mypy --version | cut -d' ' -f2)"
+bandit_version="$(bandit --version | head -1 | cut -d' ' -f2)"
 black_version="$(black --version | rev | cut -d' ' -f1 | rev)"
 isort_version="$(isort --version-number)"
 
@@ -221,6 +222,12 @@ for file in "${files[@]}"; do
 
     printf '*** mypy %s ***\n' "$mypy_version"
     mypy --ignore-missing-imports --follow-imports=skip --no-color-output --no-error-summary "$file"
+
+    printf '*** bandit %s ***\n' "$bandit_version"
+    bandit --quiet \
+        --format custom \
+        --msg-template '{relpath}:{line}: {test_id} {msg} {severity} severity, {confidence} confidence  {range}' \
+        "$file"
 
     printf '*** black %s ***\n' "$black_version"
     black --check --quiet "$file" || printf 'The black formatting is bad\n'
