@@ -202,23 +202,29 @@ else
     pylint_ignores="--disable=${light_disabled_pylint_error_codes}"
 fi
 
+flake8_version="$(flake8 --version | head -1 | cut -d' ' -f1)"
+pylint_version="$(pylint --version | head -1  | cut -d' ' -f2)"
+mypy_version="$(mypy --version | cut -d' ' -f2)"
+black_version="$(black --version | rev | cut -d' ' -f1 | rev)"
+isort_version="$(isort --version-number)"
+
 for file in "${files[@]}"; do
     printf '\e[1m=== %s ===\e[m\n' "$file"
 
-    printf '*** flake8 %s ***\n' "$(flake8 --version | head -1 | cut -d' ' -f1)"
+    printf '*** flake8 %s ***\n' "$flake8_version"
     # shellcheck disable=SC2086
     flake8 --max-line-length 88 ${flake8_selection} "$file"
 
-    printf '*** %s ***\n' "$(pylint --version | head -1)"
+    printf '*** pylint %s ***\n' "$pylint_version"
     # shellcheck disable=SC2086
-    pylint --msg-template='{msg_id} {path}:{line}: {msg}' --score=no ${pylint_ignores} "$file"
+    pylint --msg-template='{path}:{line}: {msg_id} {msg}' --score=no ${pylint_ignores} "$file"
 
-    printf '*** %s ***\n' "$(mypy --version)"
+    printf '*** mypy %s ***\n' "$mypy_version"
     mypy --ignore-missing-imports --follow-imports=skip --no-color-output --no-error-summary "$file"
 
-    printf '*** black %s ***\n' "$(black --version | rev | cut -d' ' -f1 | rev)"
+    printf '*** black %s ***\n' "$black_version"
     black --check --quiet "$file" || printf 'The black formatting is bad\n'
 
-    printf '*** isort %s ***\n' "$(isort --version-number)"
+    printf '*** isort %s ***\n' "$isort_version"
     isort --profile black --check-only --diff "$file"
 done
