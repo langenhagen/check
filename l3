@@ -1,11 +1,11 @@
 #!/bin/bash
-# lp3 - lint Python 3 files
+# l3 - lint Python 3 files
 #
-# Call flake8, pylint, mypy and isort one after another for all given files.
+# Call flake8, pylint, mypyi, bandit, black and isort one after another for all given files.
 # Report issues, but don't change the files.
 #
 # Usage:
-#   lp3 [-l|--light] <FILE> [<FILE>] ...
+#   l3 [-l|--light] <FILE> [<FILE>] ...
 #
 # author: andreasl
 shopt -s globstar
