@@ -12,7 +12,6 @@ shopt -s globstar
 files=("$@")
 [[ ${#files[@]} -eq 0 ]] && mapfile -t files <<< "$(ls -1 -- **/*.go)"
 
-
 go_version="$(go version | cut -d' ' -f3-)"
 staticcheck_version="$(staticcheck --version | cut -d' ' -f2-)"
 
