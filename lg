@@ -1,0 +1,33 @@
+#!/bin/bash
+# lg - Lint Go packages
+#
+# Call go vet and staticcheck one after another for all given files.
+#
+# Usage:
+#   lg <FILE> [<FILE>] ...
+#
+# author: andreasl
+shopt -s globstar
+
+files=("$@")
+[[ ${#files[@]} -eq 0 ]] && mapfile -t files <<< "$(ls -1 -- **/*.go)"
+
+
+go_version="$(go version | cut -d' ' -f3-)"
+staticcheck_version="$(staticcheck --version | cut -d' ' -f2-)"
+
+for file_path in "${files[@]}"; do
+    pushd "$(dirname "$file_path")" >/dev/null || exit 1;
+
+    printf '\e[1m=== %s ===\e[m\n' "$file_path"
+
+    file="${file_path##*/}"
+
+    printf '*** go vet %s ***\n' "$go_version"
+    go vet "$file"
+
+    printf '*** staticcheck %s ***\n' "$staticcheck_version"
+    staticcheck "$file"
+
+    popd >/dev/null || exit 2
+done
