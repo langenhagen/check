@@ -1,5 +1,5 @@
 #!/bin/bash
-# lg - Lint Go packages
+# lg - Lint Go files
 #
 # Call go vet and staticcheck one after another for all given files.
 #
