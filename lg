@@ -4,7 +4,7 @@
 # Call go vet and staticcheck one after another for all given files.
 #
 # Usage:
-#   lg <FILE> [<FILE>] ...
+#   lg [<FILE>] ...
 #
 # author: andreasl
 shopt -s globstar

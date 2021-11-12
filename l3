@@ -5,7 +5,7 @@
 # Report issues, but don't change the files.
 #
 # Usage:
-#   l3 [-l|--light] <FILE> [<FILE>] ...
+#   l3 [-l|--light] [<FILE>] ...
 #
 # author: andreasl
 shopt -s globstar
