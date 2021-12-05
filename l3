@@ -228,7 +228,8 @@ for file in "${files[@]}"; do
     mypy --ignore-missing-imports --follow-imports=skip --no-color-output --no-error-summary "$file"
 
     printf '*** bandit %s ***\n' "$bandit_version"
-    bandit --quiet \
+    bandit \
+        --quiet \
         --format custom \
         --msg-template '{relpath}:{line}: {test_id} {msg} {severity} severity, {confidence} confidence  {range}' \
         "$file"
