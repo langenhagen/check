@@ -218,7 +218,11 @@ for file in "${files[@]}"; do
 
     printf '*** pylint %s ***\n' "$pylint_version"
     # shellcheck disable=SC2086
-    pylint --msg-template='{path}:{line}: {msg_id} {msg}' --score=no ${pylint_ignores} "$file"
+    pylint \
+        --msg-template='{path}:{line}: {msg_id} {symbol} {msg}' \
+        --score=no \
+        ${pylint_ignores} \
+        "$file"
 
     printf '*** mypy %s ***\n' "$mypy_version"
     mypy --ignore-missing-imports --follow-imports=skip --no-color-output --no-error-summary "$file"
