@@ -225,7 +225,13 @@ for file in "${files[@]}"; do
         "$file"
 
     printf '*** mypy %s ***\n' "$mypy_version"
-    mypy --ignore-missing-imports --follow-imports=skip --no-color-output --no-error-summary "$file"
+    mypy \
+        --follow-imports=skip \
+        --ignore-missing-imports \
+        --no-color-output \
+        --no-error-summary \
+        --show-error-codes \
+        "$file"
 
     printf '*** bandit %s ***\n' "$bandit_version"
     bandit \
