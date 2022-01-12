@@ -1,7 +1,7 @@
 #!/bin/bash
 # l3 - lint Python 3 files
 #
-# Call flake8, pylint, mypy, bandit, black and isort one after another for all given files.
+# Call flake8, pylint, mypy, bandit, black, isort and vulture one after another for all given files.
 # Report issues, but don't change the files.
 #
 # Usage:
@@ -208,6 +208,7 @@ mypy_version="$(mypy --version | cut -d' ' -f2)"
 bandit_version="$(bandit --version | head -1 | cut -d' ' -f2)"
 black_version="$(black --version | rev | cut -d' ' -f1 | rev)"
 isort_version="$(isort --version-number)"
+vulture_version="$(vulture --version | cut -d' ' -f2)"
 
 for file in "${files[@]}"; do
     printf '\e[1m=== %s ===\e[m\n' "$file"
@@ -245,4 +246,7 @@ for file in "${files[@]}"; do
 
     printf '*** isort %s ***\n' "$isort_version"
     isort --profile black --check-only --diff "$file"
+
+    printf '*** vulture %s ***\n' "$vulture_version"
+    vulture --min-confidence 100 "$file"
 done
