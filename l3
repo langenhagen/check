@@ -188,12 +188,13 @@ else
         # 'C0412'  # (ungrouped-imports)
         'E0401'  # (import-error)
         'R0201'  # Method could be a function
-        # 'R0801'  # duplicate-code
-        'R0902'  # Too many instance attributes
-        'R0903'  # Too few public methods
+        # 'R0402'  # (consider-using-from-import) Use 'from foo.bar import baz' instead
+        # 'R0801'  # (duplicate-code) Similar lines in 2 files
+        'R0902'  # (too-many-instance-attributes) Too many instance attributes (10/7)
+        'R0903'  # (too-few-public-methods) Too few public methods (1/2)
         'R0912'  # Too many branches
-        'R0913'  # Too many arguments
-        'R0914'  # Too many local variables
+        'R0913'  # (too-many-arguments) Too many arguments (7/5)
+        'R0914'  # (too-many-locals) Too many local variables (16/15)
         'R0915'  # Too many statements
         'W0511'
         # 'W0603'  # global-statement
