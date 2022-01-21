@@ -183,18 +183,22 @@ else
         'C0103'  # Module name doesn't conform to snake_case naming style
         'C0115'
         'C0116'
+        # 'C0121'  # (singleton-comparison)
         'C0330'  # Wrong hanging indentation before block
-        'E0401'
+        # 'C0412'  # (ungrouped-imports)
+        'E0401'  # (import-error)
         'R0201'  # Method could be a function
+        # 'R0801'  # duplicate-code
         'R0902'  # Too many instance attributes
-        'R0903'
+        'R0903'  # Too few public methods
         'R0912'  # Too many branches
         'R0913'  # Too many arguments
         'R0914'  # Too many local variables
         'R0915'  # Too many statements
         'W0511'
+        # 'W0603'  # global-statement
         'W0621'  # Redefining name from outer scope
-        'W1203'
+        'W1203'  # (logging-fstring-interpolation) Use %s formatting in logging functions
     )
     light_disabled_pylint_error_codes="$(printf '%s,' "${light_disabled_pylint_error_codes_array[@]}")"
 
