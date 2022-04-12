@@ -211,7 +211,7 @@ flake8_version="$(flake8 --version | head -1 | cut -d' ' -f1)"
 pylint_version="$(pylint --version | head -1  | cut -d' ' -f2)"
 mypy_version="$(mypy --version | cut -d' ' -f2)"
 bandit_version="$(bandit --version | head -1 | cut -d' ' -f2)"
-black_version="$(black --version | rev | cut -d' ' -f1 | rev)"
+black_version="$(black --version | cut -d' ' -f2-)"
 isort_version="$(isort --version-number)"
 vulture_version="$(vulture --version | cut -d' ' -f2)"
 
