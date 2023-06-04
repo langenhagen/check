@@ -242,6 +242,7 @@ for file in "${files[@]}"; do
         --no-color-output \
         --no-error-summary \
         --show-error-codes \
+        --check-untyped-defs \
         "$file"
 
     printf '*** bandit %s ***\n' "$bandit_version"
