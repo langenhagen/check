@@ -1,8 +1,8 @@
 #!/bin/bash
 # l3 - lint Python 3 files
 #
-# Call flake8, pylint, mypy, bandit, black, isort, vulture and refurb one after another for all
-# given files. Report issues, but don't change the files.
+# Call flake8, pylint, ruff, mypy, bandit, black, isort, vulture and refurb one after another
+# for all given files. Report issues, but don't change the files.
 #
 # Usage:
 #   l3 [-l|--light] [<FILE>] ...
@@ -209,6 +209,7 @@ fi
 
 flake8_version="$(flake8 --version | head -1 | cut -d' ' -f1)"
 pylint_version="$(pylint --version | head -1  | cut -d' ' -f2)"
+ruff_version="$(ruff --version | cut -d' ' -f2)"
 mypy_version="$(mypy --version | cut -d' ' -f2)"
 bandit_version="$(bandit --version | head -1 | cut -d' ' -f2)"
 black_version="$(black --version | cut -d' ' -f2-)"
@@ -230,6 +231,9 @@ for file in "${files[@]}"; do
         --score=no \
         ${pylint_ignores} \
         "$file"
+
+    printf '*** ruff %s ***\n' "$ruff_version"
+    ruff "$file"
 
     printf '*** mypy %s ***\n' "$mypy_version"
     mypy \
