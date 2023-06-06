@@ -224,6 +224,9 @@ for file in "${files[@]}"; do
     # shellcheck disable=SC2086
     flake8 --max-line-length 88 ${flake8_selection} "$file"
 
+    printf '*** ruff %s ***\n' "$ruff_version"
+    ruff "$file"
+
     printf '*** pylint %s ***\n' "$pylint_version"
     # shellcheck disable=SC2086
     pylint \
@@ -231,9 +234,6 @@ for file in "${files[@]}"; do
         --score=no \
         ${pylint_ignores} \
         "$file"
-
-    printf '*** ruff %s ***\n' "$ruff_version"
-    ruff "$file"
 
     printf '*** mypy %s ***\n' "$mypy_version"
     mypy \
