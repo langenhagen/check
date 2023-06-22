@@ -191,10 +191,10 @@ else
         'C0115'
         'C0116'
         # 'C0121'  # (singleton-comparison)
-        'C0330'  # Wrong hanging indentation before block
+        # 'C0330'  # Wrong hanging indentation before block; useless; removed from default checks anyway
         # 'C0412'  # (ungrouped-imports)
         'E0401'  # (import-error)
-        'R0201'  # Method could be a function
+        # 'R0201'  # Method could be a function; useless; removed from default checks anyway
         # 'R0402'  # (consider-using-from-import) Use 'from foo.bar import baz' instead
         # 'R0801'  # (duplicate-code) Similar lines in 2 files
         'R0902'  # (too-many-instance-attributes) Too many instance attributes (10/7)
