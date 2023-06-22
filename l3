@@ -31,6 +31,13 @@ if [ "$light" != 'true' ]; then
     # normal mode error code specification
 
     pylint_ignores="--disable=C0103"
+
+    # warning: `one-blank-line-before-class` (D203) and `no-blank-line-before-class` (D211) are
+    # incompatible. Ignoring `one-blank-line-before-class`.
+    # warning: `multi-line-summary-first-line` (D212) and `multi-line-summary-second-line` (D213)
+    # are incompatible. Ignoring `multi-line-summary-second-line`.
+    ruff_selection='--select=ALL --ignore=D203,D213'
+
 else
     # light mode error code specifications
 
@@ -225,11 +232,8 @@ for file in "${files[@]}"; do
     flake8 --max-line-length 88 ${flake8_selection} "$file"
 
     printf '*** ruff %s ***\n' "$ruff_version"
-    # warning: `one-blank-line-before-class` (D203) and `no-blank-line-before-class` (D211) are
-    # incompatible. Ignoring `one-blank-line-before-class`.
-    # warning: `multi-line-summary-first-line` (D212) and `multi-line-summary-second-line` (D213)
-    # are incompatible. Ignoring `multi-line-summary-second-line`.
-    ruff check --select=ALL --ignore='D203,D213' "$file"
+    # shellcheck disable=SC2086
+    ruff check ${ruff_selection} "$file"
 
     printf '*** pylint %s ***\n' "$pylint_version"
     # shellcheck disable=SC2086
