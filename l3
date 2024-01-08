@@ -36,8 +36,10 @@ if [ "$light" != 'true' ]; then
     # incompatible. Ignoring `one-blank-line-before-class`.
     # warning: `multi-line-summary-first-line` (D212) and `multi-line-summary-second-line` (D213)
     # are incompatible. Ignoring `multi-line-summary-second-line`.
+    # D205: 1 blank line required between summary line and description
+    # FA102: Missing `from __future__ import annotations`, but uses PEP 585 collection
     # see: https://beta.ruff.rs/docs/rules/
-    ruff_selection='--select=ALL --ignore=D203,D213'
+    ruff_selection='--select=ALL --ignore=D203,D205,D213,FA102'
 
 else
     # light mode error code specifications
