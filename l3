@@ -273,5 +273,5 @@ for file in "${files[@]}"; do
     vulture --min-confidence 100 "$file"
 
     printf '*** refurb %s ***\n' "$refurb_version"
-    refurb --ignore FURB115 "$file"
+    refurb --ignore FURB115,FURB149 "$file"
 done
