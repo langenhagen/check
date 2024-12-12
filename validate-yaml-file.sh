@@ -1,6 +1,6 @@
 #!/bin/bash
-# Validate the given yaml file via python.
-# Requires Python and the Python package pyyaml to be available.
+# Validate the given YAML file via Python.
+# Requires Python and the Python package `pyyaml` to be available.
 #
 # Consider using the tool yamllint https://github.com/adrienverge/yamllint.
 #
