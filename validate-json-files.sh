@@ -9,7 +9,7 @@ target_dir="${1:-.}"
 for file in "$target_dir"/*.json; do
     [ -f "$file" ] || continue
 
-    python3 -c "import json, sys; json.load(open('$file'))" 2>/dev/null
+    jq empty "$file" 2>/dev/null
 
     # shellcheck disable=SC2181
     [ $? -eq 0 ] && echo "Valid: $file" || echo "Invalid!: $file"
