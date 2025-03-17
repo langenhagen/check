@@ -9,4 +9,4 @@
 #
 # author: andreasl
 
-python -c 'import sys, yaml; yaml.safe_load(sys.stdin); print("Yaml valid")' < "$1"
+python -c 'import sys, yaml; yaml.safe_load(sys.stdin); print("Yaml valid")' <"$1"

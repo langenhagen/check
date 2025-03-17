@@ -9,11 +9,12 @@ https://stackoverflow.com/questions/40886456/how-to-detect-if-code-is-python-3-c
 
 author: andreasl
 """
+
 import ast
 import sys
 
 if len(sys.argv) != 2:
-    print("Usage:\n{} <file>".format(sys.argv[0]))
+    print(f"Usage:\n{sys.argv[0]} <file>")
     sys.exit(2)
 
 
@@ -24,11 +25,11 @@ def test_source_code(code_data):
         return False, exc
 
 
-print("Running on top of Python {}".format(sys.version.replace('\n', ' ')))
+print("Running on top of Python {}".format(sys.version.replace("\n", " ")))
 
 success, result = test_source_code(open(sys.argv[1]).read())
 if not success:
-    print("Failure:\n{}".format(result))
+    print(f"Failure:\n{result}")
     sys.exit(1)
 else:
     print("File looks good.")

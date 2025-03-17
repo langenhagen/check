@@ -4,9 +4,9 @@
 # author: andreasl
 
 staged_unstaged_files_lines="$(git diff --name-only HEAD)"
-mapfile -t staged_unstaged_files <<< "$staged_unstaged_files_lines"
+mapfile -t staged_unstaged_files <<<"$staged_unstaged_files_lines"
 untracked_files_lines="$(git ls-files --others --exclude-standard)"
-mapfile -t untracked_files <<< "$untracked_files_lines"
+mapfile -t untracked_files <<<"$untracked_files_lines"
 
 files="${staged_unstaged_files[@]}"
 files+=("${untracked_files[@]}")

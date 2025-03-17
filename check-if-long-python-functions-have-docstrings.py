@@ -6,6 +6,7 @@ Usage:
 
 author: andreasl
 """
+
 import ast
 import sys
 
@@ -53,10 +54,12 @@ def run(max_loc, filename):
         if loc > max_loc and not ast.get_docstring(node):
             print(
                 f"{filename}:{node.lineno}:{node.col_offset} L001 function "
-                f"with {loc} LoC lacks docstring")
+                f"with {loc} LoC lacks docstring"
+            )
 
 
 if __name__ == "__main__":
     run(
         max_loc=int(sys.argv[1]),
-        filename=sys.argv[2])
+        filename=sys.argv[2],
+    )

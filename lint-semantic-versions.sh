@@ -4,6 +4,6 @@
 #
 # author: andreasl
 
-grep -HPn '=\s*\d+' "$@" | \
+grep -HPn '=\s*\d+' "$@" |
     grep -Pv '=\s*(\d+\.){2}\d+([\s,;]|$)' && exit 1
 exit 0

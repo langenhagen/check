@@ -9,7 +9,7 @@
 directory="${1:-.}"
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 verbose=false
-[ -n "$2" ] && verbose=true;
+[ -n "$2" ] && verbose=true
 
 check_file() {
     file="$1"
