@@ -14,8 +14,7 @@ import sys
 def parse_python_file(filename: str):
     """Return the ast from a given python file."""
     with open(filename) as file:
-        root = ast.parse(file.read())
-    return root
+        return ast.parse(file.read())
 
 
 def get_last_deep_child(ast_node):
@@ -45,7 +44,7 @@ def get_node_loc(node):
     return end_lineno - lineno
 
 
-def run(max_loc, filename):
+def run(max_loc, filename) -> None:
     """Run the linter."""
     root = parse_python_file(filename)
     nodes = find_all_function_nodes(root)
