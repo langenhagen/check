@@ -1,8 +1,8 @@
 #!/bin/bash
 # l3 - lint Python 3 files
 #
-# Call flake8, pylint, ruff, mypy, bandit, black, isort, vulture and refurb one after another
-# for all given files. Report issues, but don't change the files.
+# Call flake8, pylint, ruff, mypy, ty, bandit, black, isort, vulture and refurb
+# one after another for all given files. Report issues, but don't change the files.
 #
 # Usage:
 #   l3 [-l|--light] [<FILE>] ...
@@ -221,6 +221,10 @@ flake8_version="$(flake8 --version | head -1 | cut -d' ' -f1)"
 pylint_version="$(pylint --version | head -1  | cut -d' ' -f2)"
 ruff_version="$(ruff --version | cut -d' ' -f2)"
 mypy_version="$(mypy --version | cut -d' ' -f2)"
+
+uvx --version >/dev/null 2>&1 && has_uvx=true
+
+[ "$has_uvx" == true ] && ty_version="$(uvx ty --version | cut -d' ' -f2)"
 bandit_version="$(bandit --version | head -1 | cut -d' ' -f2)"
 black_version="$(black --version | cut -d' ' -f2-)"
 isort_version="$(isort --version-number)"
@@ -255,6 +259,11 @@ for file in "${files[@]}"; do
         --show-error-codes \
         --check-untyped-defs \
         "$file"
+
+    if [ "$has_uvx" ]; then
+        printf '*** ty %s ***\n' "$ty_version"
+        uvx ty check
+    fi
 
     printf '*** bandit %s ***\n' "$bandit_version"
     bandit \
