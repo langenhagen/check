@@ -1,0 +1,71 @@
+#!/bin/bash
+# Run a few ruff commands against a given file or directory in order to autofix some files.
+#
+# Note: This is intended to be a quick autofixer, not a comprehensive linter.
+#
+# Usage:
+#
+#   rf             # run recursively against the CWD
+#   rf myfile.py   # run against myfile.py
+#   rf my/folder   # run recursively against my/folder
+#
+#   Later arguments get passed to the ruff linter:
+#
+#   rf . --unsafe-fixes          # allow unsafe fixes
+#   rf . --target-version py313  # apply ruff under target Python version 3.13
+#
+# See:
+# - https://docs.astral.sh/ruff/rules
+#
+# author: andreasl
+
+file="${1:-.}"
+shift
+
+select_rules_array=(
+    'ANN'  # type annotations: require/validate function/type hints
+    'B'    # bugbear: catch likely bugs and dangerous patterns
+    'C4'   # comprehensions: warn on suboptimal list/set/dict comprehensions
+    'D'    # docstrings: docstring presence, style, formatting
+    'EXE'  # executable: script shebang, exec-bit
+    'F'    # pyflakes: undefined names, unused imports/vars
+    'FA'   # future annotations: __future__ import for annotations
+    'FURB' # refurb: small safe modernizations, clearer idioms
+    'G'    # logging string format: f-string/percent/concat in logs
+    'I'    # isort: import order and grouping
+    'ICN'  # import conventions: aliasing, banned patterns
+    'ISC'  # implicit string concat: accidental or explicit concatenation issues
+    'LOG'  # logging: enforce correct logger usage
+    'NPY'  # numpy: deprecated/legacy numpy idioms
+    'PIE'  # python idioms: catch non-idiomatic code
+    'Q'    # quotes: enforce quote style (single/double)
+    'RET'  # return: warn on useless/ambiguous return statements
+    'RSE'  # raise: catch bad raise usage (parens, exception style)
+    'SIM'  # simplify: recommend easier/shorter forms
+    'TC'   # type-checking: move typing-only imports to TYPE_CHECKING
+    'UP'   # pyupgrade: modernize syntax (f-strings, PEP 604/585 etc)
+    'W'    # whitespace: trailing, mixed, blank lines etc
+)
+
+ignore_rules_array=(
+    'B904'  # require to raise exception chains with `raise ... from`
+    'B905'  # require zip(..., strict=...)
+    'D202'  # no blank lines allowed after function docstring
+    'D203'  # blank line required before class docstring
+    'D205'  # missing blank line after-summary
+    'D213'  # multi-line docstring summary should start at the second line
+    'D405'  # section name should be properly capitalized ("{name}") (Todo instead of TODO)
+    'D407'  # require dashed underlines after docstring sections
+    'D412'  # no blank lines allowed between a section header and its content
+    'D416'  # section name should end with a colon
+    'FA102' # missing from __future__ import annotations
+    'UP015' # unnecessary mode argument (i.e. `open(mode="r")`)
+    'UP035' # deprecated import warnings; import from {target} instead: {names}
+)
+
+select_rules="$(IFS=,; echo "${select_rules_array[*]}")"
+ignore_rules="$(IFS=,; echo "${ignore_rules_array[*]}")"
+
+ruff format "$file" # --line-length 120
+# shellcheck disable=SC2068
+ruff check --select "$select_rules" --ignore "$ignore_rules" --fix "$file" $@
