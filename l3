@@ -232,7 +232,7 @@ vulture_version="$(vulture --version | cut -d' ' -f2)"
 refurb_version="$(refurb --version | head -1 | cut -d' ' -f2)"
 
 for file in "${files[@]}"; do
-    printf '\e[1m=== %s ===\e[m\n' "$file"
+    printf '\e[1;96m=== %s ===\e[m\n' "$file"
 
     printf '*** flake8 %s ***\n' "$flake8_version"
     # shellcheck disable=SC2086
