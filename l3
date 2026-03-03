@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # l3 - lint Python 3 files
 #
-# Call flake8, pylint, ruff, mypy, ty, bandit, black, isort, vulture and refurb
+# Call flake8, ssort, pylint, ruff, mypy, ty, bandit, black, isort, vulture and refurb
 # one after another for all given files. Report issues, but don't change the files.
 #
 # Usage:
@@ -218,6 +218,7 @@ else
 fi
 
 flake8_version="$(flake8 --version | head -1 | cut -d' ' -f1)"
+ssort_version="$(ssort --version | cut -d' ' -f2)"
 pylint_version="$(pylint --version | head -1 | cut -d' ' -f2)"
 ruff_version="$(ruff --version | cut -d' ' -f2)"
 mypy_version="$(mypy --version | cut -d' ' -f2)"
@@ -237,6 +238,9 @@ for file in "${files[@]}"; do
     printf '*** flake8 %s ***\n' "$flake8_version"
     # shellcheck disable=SC2086
     flake8 --max-line-length 88 ${flake8_selection} "$file"
+
+    printf '*** ssort %s ***\n' "$ssort_version"
+    ssort --check "$file"
 
     printf '*** ruff %s ***\n' "$ruff_version"
     # shellcheck disable=SC2086
