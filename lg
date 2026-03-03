@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # lg - Lint Go files
 #
 # Call go vet, staticcheck, goimports and golines one after another for all given files.

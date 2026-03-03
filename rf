@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Run a few ruff commands against a given file or directory in order to autofix some files.
 #
 # Note: This is intended to be a quick autofixer, not a comprehensive linter.

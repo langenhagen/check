@@ -1,4 +1,4 @@
-#!/usr/env/bin python3
+#!/usr/bin/env python3
 """Scan a given Python file and check if long functions have docstrings.
 
 Usage:

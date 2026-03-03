@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Identify possible issues in the given Dockerfiles.
 #
 # author: andreasl

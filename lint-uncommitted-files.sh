@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Lint unstaged and staged files in the current repo.
 #
 # author: andreasl

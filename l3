@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # l3 - lint Python 3 files
 #
 # Call flake8, pylint, ruff, mypy, ty, bandit, black, isort, vulture and refurb

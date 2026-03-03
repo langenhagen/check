@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Retrieve the semantic version specifications from given files
 # that are underspecified or overspecified.
 #

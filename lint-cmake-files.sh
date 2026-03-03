@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Lint and optionally format the given CMakeLists.txt files.
 #
 # Call cmake-format and cmake-lint one after another for all given files.

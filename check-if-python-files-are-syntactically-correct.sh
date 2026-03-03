@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Report whether all python files under a given directory are syntactically correct.
 #
 # In order to test against Python 2 or Python 3, activate the Python version you want to check
