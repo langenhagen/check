@@ -9,11 +9,11 @@
 # author: andreasl
 
 files=()
-format=
+format_args=()
 while [ "$#" -gt 0 ]; do
     case "$1" in
     -f | --format)
-        format=-i
+        format_args=(-i)
         ;;
     *)
         files+=("$1")
@@ -26,7 +26,7 @@ for file in "${files[@]}"; do
     printf '\e[1m=== %s ===\e[m\n' "$file"
 
     printf '*** cmake-format %s ***\n' "$(cmake-format --version)"
-    cmake-format ${format} "$file"
+    cmake-format "${format_args[@]}" "$file"
 
     printf '*** cmake-lint %s ***\n' "$(cmake-lint --version)"
     cmake-lint "$file"
