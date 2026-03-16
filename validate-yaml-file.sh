@@ -9,4 +9,10 @@
 #
 # author: andreasl
 
-python -c 'import sys, yaml; yaml.safe_load(sys.stdin); print("Yaml valid")' <"$1"
+file_path="$1"
+if [ -z "$file_path" ] || [ ! -f "$file_path" ]; then
+    >&2 printf 'File does not exist: %s\n' "$file_path"
+    exit 1
+fi
+
+python -c 'import sys, yaml; yaml.safe_load(sys.stdin); print("YAML valid")' <"$file_path"
