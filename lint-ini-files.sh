@@ -4,9 +4,9 @@
 # author: andreasl
 
 checks_array=(
-    '[^ ]='  # space before assignment
-    '=[^ ]'  # space after assignment
-    ', '     # space after comma
+    '[^ ]=' # space before assignment
+    '=[^ ]' # space after assignment
+    ', '    # space after comma
 )
 checks="$(printf '%s|' "${checks_array[@]}")"
 
