@@ -8,7 +8,7 @@
 #   l3 [-l|--light] [<FILE>] ...
 #
 # author: andreasl
-shopt -s globstar
+shopt -s globstar nullglob
 
 files=()
 light=false
@@ -25,7 +25,7 @@ while [ "$#" -gt 0 ]; do
     shift
 done
 
-[[ ${#files[@]} -eq 0 ]] && mapfile -t files <<<"$(ls -1 -- **/*.py)"
+[[ ${#files[@]} -eq 0 ]] && files=(**/*.py)
 
 if [ "$light" != 'true' ]; then
     # normal mode error code specification
