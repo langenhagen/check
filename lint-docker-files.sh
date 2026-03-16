@@ -2,10 +2,10 @@
 # Identify possible issues in the given Dockerfiles.
 #
 # author: andreasl
-shopt -s globstar
+shopt -s globstar nullglob
 
 files=("$@")
-[[ ${#files[@]} -eq 0 ]] && mapfile -t files <<<"$(ls -1 -- **/Dockerfile)"
+[[ ${#files[@]} -eq 0 ]] && files=(**/Dockerfile)
 
 for file in "${files[@]}"; do
     printf '\e[1m=== %s ===\e[m\n' "$file"
