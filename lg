@@ -7,10 +7,10 @@
 #   lg [<FILE>] ...
 #
 # author: andreasl
-shopt -s globstar
+shopt -s globstar nullglob
 
 files=("$@")
-[[ ${#files[@]} -eq 0 ]] && mapfile -t files <<< "$(ls -1 -- **/*.go)"
+[[ ${#files[@]} -eq 0 ]] && files=(**/*.go)
 
 go_version="$(go version | cut -d' ' -f3-)"
 staticcheck_version="$(staticcheck --version | cut -d' ' -f2-)"
