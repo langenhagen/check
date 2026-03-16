@@ -8,7 +8,7 @@ mapfile -t staged_unstaged_files <<<"$staged_unstaged_files_lines"
 untracked_files_lines="$(git ls-files --others --exclude-standard)"
 mapfile -t untracked_files <<<"$untracked_files_lines"
 
-files="${staged_unstaged_files[@]}"
+files=("${staged_unstaged_files[@]}")
 files+=("${untracked_files[@]}")
 
 lint_bash_file() {
