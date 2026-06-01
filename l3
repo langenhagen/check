@@ -262,7 +262,7 @@ for file in "${files[@]}"; do
         "$file"
 
     printf '*** ty %s ***\n' "$ty_version"
-    uvx ty check
+    uvx ty check "$file"
 
     printf '*** bandit %s ***\n' "$bandit_version"
     bandit \
