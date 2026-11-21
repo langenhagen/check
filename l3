@@ -38,8 +38,9 @@ if [ "$light" != 'true' ]; then
     # are incompatible. Ignoring `multi-line-summary-second-line`.
     # D205: 1 blank line required between summary line and description
     # FA102: Missing `from __future__ import annotations`, but uses PEP 585 collection
+    # CPY001: Missing copyright notice at top of file
     # see: https://beta.ruff.rs/docs/rules/
-    ruff_selection='--select=ALL --ignore=D203,D205,D213,FA102'
+    ruff_selection='--select=ALL --ignore=D203,D205,D213,FA102,CPY001'
 
 else
     # light mode error code specifications
